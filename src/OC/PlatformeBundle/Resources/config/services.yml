@@ -1,0 +1,5 @@
+# src/OC/PlatformeBundle/Resources/config/services.yml
+
+services:
+    oc_platforme.antispam:
+        class: OC\PlatformeBundle\Antispam\OCAntispam

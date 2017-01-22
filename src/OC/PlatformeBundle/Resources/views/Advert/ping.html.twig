@@ -1,0 +1,87 @@
+{# src/OC/PlatformeBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "OCPlatformeBundle::layout.html.twig" %}
+
+{% block title %}
+    Test de connection - {{ parent() }}
+{% endblock %}
+
+{% block bouton %}
+    <a href="{{ path('oc_platforme_home') }}" class="btn btn-warning">Se déconnecter</a>
+{% endblock %}
+
+{% block link %}
+    <h3>Les pages</h3>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ path('oc_platforme_view') }}">Accueil</a></li>
+        <li><a href="{{ path('oc_platforme_add') }}">Créer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_addsalle') }}">Créer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_modifmachine') }}">Modifier/Supprimer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_modifsalle') }}">Modifier/Supprimer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_ping') }}">Tester la connection d'une salle</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <h2>Test de ping</h2>
+
+    {{ include("OCPlatformeBundle:Advert:form.html.twig") }}
+
+
+    {% set ipexist = "Cet ip ne correspond à aucune machine"%}
+    {% set etatmachine%}{% endset %}
+    {% set connectee = 0 %}
+
+    {% for machine in machines %}
+
+        {% if iptest == machine.ipMachine %}
+            {% set ipexist = "Cet ip existe"%}
+            {% set connectee = 1 %}
+            {% if  machine.etatMachine == 'Eteinte'%}
+                {% set etatmachine = ' mais la machine est éteinte.'%}
+                {% set connectee = 0 %}
+            {% endif %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% if connectee == 1 %}
+        <h3>Cette machine est bien connectée !</h3>
+
+        {% for machine in machines if iptest == machine.Ipmachine%}
+            <div class="col-xs-4 .col-md-3" style="border: 10px solid {{ machine.colorMachine }}; border-radius: 15px; margin-bottom: 20">
+                <p>
+                    Ip : {{ machine.ipMachine }}<br>
+                    Auteur : {{ machine.authorMachine }}<br>
+                    Etat : {{ machine.etatMachine }}<br>
+                    Date : {{ machine.dateMachine | date('j F Y') }}
+                </p>
+            </div>
+            <div class="col-xs-8 .col-md-9" style="padding: 60px"></div>
+        {% endfor %}
+
+    {% else %}
+
+        <h3>{{ ipexist }} {{ etatmachine }}</h3>
+        {% for machine in machines if iptest == machine.Ipmachine%}
+            <div class="col-xs-4 .col-md-3" style="border: 10px solid {{ machine.colorMachine }}; border-radius: 15px; margin-bottom: 20">
+                <p>
+                    Ip : {{ machine.ipMachine }}<br>
+                    Auteur : {{ machine.authorMachine }}<br>
+                    Etat : {{ machine.etatMachine }}<br>
+                    Date : {{ machine.dateMachine | date('j F Y') }}
+                </p>
+            </div>
+            <div class="col-xs-8 .col-md-9" style="padding: 60px"></div>
+        {% endfor %}
+    {% endif %}
+
+    <p>
+        <a href="{{ path('oc_platforme_view') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour au parc
+        </a>
+    </p>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: tatiana.inow.fr
+    database_port: 3306
+    database_name: administrateurs
+    database_user: administrateurs
+    database_password: cEmFa
+    mailer_transport: smtp
+    mailer_host: null
+    mailer_user: null
+    mailer_password: null
+    secret: acd291a6b9d8e9f62f038423a3a4784e1436737a

@@ -1,0 +1,41 @@
+{# src/OC/PlatformeBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "OCPlatformeBundle::layout.html.twig" %}
+
+{% block title %}
+    Créer une salle - {{ parent() }}
+{% endblock %}
+
+{% block bouton %}
+    <a href="{{ path('oc_platforme_home') }}" class="btn btn-warning">Se déconnecter</a>
+{% endblock %}
+
+{% block link %}
+    <h3>Les pages</h3>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ path('oc_platforme_view') }}">Accueil</a></li>
+        <li><a href="{{ path('oc_platforme_add') }}">Créer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_addsalle') }}">Créer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_modifmachine') }}">Modifier/Supprimer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_modifsalle') }}">Modifier/Supprimer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_ping') }}">Tester la connexion d'une salle</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <h2>Créer une salle</h2>
+
+    {{ include("OCPlatformeBundle:Advert:form.html.twig") }}
+
+    <p>
+        Attention: cette salle sera ajoutée directement sur la page d'accueil après validation du formulaire !
+    </p>
+    <p>
+        <a href="{{ path('oc_platforme_view') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour au parc
+        </a>
+    </p>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{# src/OC/PlatformeBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "OCPlatformeBundle::layout.html.twig" %}
+
+{% block title %}
+    Modifier une salle - {{ parent() }}
+{% endblock %}
+
+{% block bouton %}
+    <a href="{{ path('oc_platforme_home') }}" class="btn btn-warning">Se déconnecter</a>
+{% endblock %}
+
+{% block link %}
+    <h3>Les pages</h3>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ path('oc_platforme_view') }}">Accueil</a></li>
+        <li><a href="{{ path('oc_platforme_add') }}">Créer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_addsalle') }}">Créer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_modifmachine') }}">Modifier/Supprimer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_modifsalle') }}">Modifier/Supprimer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_ping') }}">Tester la connexion d'une salle</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <h2>Toutes les salles :</h2>
+
+    <p>
+        <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Numéro de la salle</th>
+            <th>Nom de la salle</th>
+            <th>Dernière modification</th>
+        </tr>
+        </thead>
+        {% for salle in salles %}
+        <tbody>
+        <tr>
+            <td> {{ salle.id }} </td>
+            <td> {{ salle.numSalle }} </td>
+            <td> {{ salle.nomSalle }} </td>
+            <td> {{ salle.dateSalle | date('j F Y') }} </td>
+            <td><a href="editsalle/{{ salle.id }}" class="btn btn-success">Modifier</a></td>
+            <td><a href="deletesalle/{{ salle.id }}" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+        </tbody>
+        {% endfor %}
+        </table>
+    </p>
+
+    <p>
+        <a href="{{ path('oc_platforme_view') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour au parc
+        </a>
+    </p>
+
+{% endblock %}

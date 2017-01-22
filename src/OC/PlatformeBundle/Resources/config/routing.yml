@@ -1,0 +1,75 @@
+# src/OC/PlatformBundle/Resources/config/routing.yml
+
+oc_platforme_home:
+    path:      /index
+    defaults: { _controller: OCPlatformeBundle:Advert:index}
+
+
+oc_platforme_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: OCPlatformeBundle:Advert:edit }
+    requirements:
+        id: \d+
+
+
+oc_platforme_editsalle:
+    path:      /editsalle/{id}
+    defaults:  { _controller: OCPlatformeBundle:Advert:editsalle }
+    requirements:
+        id: \d+
+
+
+oc_platforme_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: OCPlatformeBundle:Advert:delete }
+    requirements:
+        id: \d+
+
+
+oc_platforme_deletesalle:
+    path:      /deletesalle/{id}
+    defaults:  { _controller: OCPlatformeBundle:Advert:deletesalle }
+    requirements:
+        id: \d+
+
+
+oc_platforme_ping:
+    path:      /ping
+    defaults:  { _controller: OCPlatformeBundle:Advert:ping }
+
+
+oc_platforme_ping2:
+    path:      /ping2
+    defaults:  { _controller: OCPlatformeBundle:Advert:ping2 }
+
+
+oc_platforme_view:
+    path:      /view
+    defaults:  { _controller: OCPlatformeBundle:Advert:view }
+    requirements:
+        id: \d+
+
+
+oc_platforme_add:
+    path:      /add
+    defaults:  { _controller: OCPlatformeBundle:Advert:add }
+
+
+oc_platforme_addsalle:
+    path:      /addsalle
+    defaults:  { _controller: OCPlatformeBundle:Advert:addsalle }
+
+
+oc_platforme_affichage:
+    path:      /affichage
+    defaults:  { _controller: OCPlatformeBundle:Advert:affichage }
+
+
+oc_platforme_modifmachine:
+    path:      /modifmachine
+    defaults:  { _controller: OCPlatformeBundle:Advert:modifmachine }
+
+
+oc_platforme_modifsalle:
+    path:      /modifsalle
+    defaults:  { _controller: OCPlatformeBundle:Advert:modifsalle }

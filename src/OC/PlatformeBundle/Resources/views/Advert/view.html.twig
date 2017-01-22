@@ -1,0 +1,50 @@
+{# src/OC/PlatformeBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "OCPlatformeBundle::layout.html.twig" %}
+
+{% block refresh %}<meta http-equiv="refresh" content="30" >{% endblock %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block bouton %}
+    <a href="{{ path('oc_platforme_home') }}" class="btn btn-warning">Se déconnecter</a>
+{% endblock %}
+
+{% block link %}
+<h3>Les pages</h3>
+<ul class="nav nav-pills nav-stacked">
+    <li><a href="{{ path('oc_platforme_view') }}">Accueil</a></li>
+    <li><a href="{{ path('oc_platforme_add') }}">Créer une machine</a></li>
+    <li><a href="{{ path('oc_platforme_addsalle') }}">Créer une salle</a></li>
+    <li><a href="{{ path('oc_platforme_modifmachine') }}">Modifier/Supprimer une machine</a></li>
+    <li><a href="{{ path('oc_platforme_modifsalle') }}">Modifier/Supprimer une salle</a></li>
+    <li><a href="{{ path('oc_platforme_ping') }}">Tester la connexion d'une salle</a></li>
+</ul>
+{% endblock %}
+
+{% block ocplatforme_body %}
+
+    <h2>Les salles et les machines :</h2>
+
+    {% for salle in salles %}
+        <div class="row" style="text-align: center; text-decoration: underline; border: 15px solid {{ salle.colorSalle }}; border-radius: 30px">
+            <h3>Salle n°{{ salle.numSalle }} "{{ salle.nomSalle }}"</h3>
+        {% for machine in machines %}
+            {% if  salle.numSalle  ==  machine.numsalleMachine  %}
+                <div class="col-xs-4 .col-md-3" style="border: 10px solid {{ machine.colorMachine }}; border-radius: 15px; margin-bottom: 20">
+                    <p>
+                        Ip : {{ machine.ipMachine }}<br>
+                        Auteur : {{ machine.authorMachine }}<br>
+                        Etat : {{ machine.etatMachine }}<br>
+                        Date : {{ machine.dateMachine | date('j F Y') }}
+                    </p>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock %}

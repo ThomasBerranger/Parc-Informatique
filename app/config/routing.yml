@@ -1,0 +1,7 @@
+oc_platforme:
+    resource: "@OCPlatformeBundle/Resources/config/routing.yml"
+    prefix:   /platforme
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

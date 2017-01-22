@@ -1,0 +1,65 @@
+{# src/OC/PlatformeBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "OCPlatformeBundle::layout.html.twig" %}
+
+{% block title %}
+    Modifier une machine - {{ parent() }}
+{% endblock %}
+
+{% block bouton %}
+    <a href="{{ path('oc_platforme_home') }}" class="btn btn-warning">Se déconnecter</a>
+{% endblock %}
+
+{% block link %}
+    <h3>Les pages</h3>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ path('oc_platforme_view') }}">Accueil</a></li>
+        <li><a href="{{ path('oc_platforme_add') }}">Créer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_addsalle') }}">Créer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_modifmachine') }}">Modifier/Supprimer une machine</a></li>
+        <li><a href="{{ path('oc_platforme_modifsalle') }}">Modifier/Supprimer une salle</a></li>
+        <li><a href="{{ path('oc_platforme_ping') }}">Tester la connexion d'une salle</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <h2>Toutes les machine :</h2>
+
+    <p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ip de la machine</th>
+                <th>Auteur de la machine</th>
+                <th>Etat de la machine</th>
+                <th>Salle de la machine</th>
+                <th>Dernière modification</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for machine in machines %}
+                    <tr>
+                        <td>{{ machine.id }}</td>
+                        <td>{{ machine.ipMachine }}</td>
+                        <td>{{ machine.authorMachine }}</td>
+                        <td>{{ machine.etatMachine }}</td>
+                        <td>{{ machine.numsalleMachine }}</td>
+                        <td>{{ machine.dateMachine | date('j F Y') }}</td>
+                        <td><a href="edit/{{ machine.id }}" class="btn btn-success">Modifier</a></td>
+                        <td><a href="delete/{{ machine.id }}" class="btn btn-danger">Supprimer</a></td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </p>
+
+    <p>
+        <a href="{{ path('oc_platforme_view') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour au parc
+        </a>
+    </p>
+
+{% endblock %}
